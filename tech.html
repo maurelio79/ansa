@@ -17,7 +17,7 @@
     <script type='text/javascript'>  
         // Parses returned response and extracts  
         // the title, links, and text of each news story.  
-        function top_home(o){  
+        function top_tech(o){  
         var items = o.query.results.item;  
         var output = '';  
         var no_items=items.length;  
@@ -62,7 +62,7 @@
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
         <!-- The YQL statment will be assigned to src. -->  
-        <script src="http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621689%2Findex.rss%22&format=json&diagnostics=true&callback=top_home"></script>
+        <script src="http://query.yahooapis.com/v1/public/yql?q=select%20title%2Clink%2Cdescription%2CpubDate%20from%20rss%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621714%2Findex.rss%22&format=json&diagnostics=true&callback=top_tech"></script>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
             <div data-role="navbar" data-iconpos="left">
