@@ -23,11 +23,11 @@ RSS include: Home,  Cronaca, Economia, Politica, Scienza, Tech, Cinema, Mondo
 
 <p>19/08/2013</p>
 
-- Increasing load time out to avoid startup problems.
+- Increasing load timeout to avoid startup problems.
 <hr />
 
 <p>18/08/2013</p>
 
 - Added splash screen.
-- Addedd config.xml
+- Added config.xml
 <hr />
