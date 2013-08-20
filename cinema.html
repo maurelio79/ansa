@@ -17,7 +17,7 @@
     <script type='text/javascript'>  
         // Parses returned response and extracts  
         // the title, links, and text of each news story.  
-        function top_cronaca(o){  
+        function top_cinema(o){  
         var items = o.query.results.item;  
         var output = '';  
         var no_items=items.length;  
@@ -48,23 +48,23 @@
             <div data-role="navbar">
             <ul>
 				<li><a href="index.html"  data-ajax="false">HOME PAGE</a></li>
-                <li><a href="cronaca.html" data-theme="d" data-ajax="false">CRONACA</a></li>
+                <li><a href="cronaca.html" data-ajax="false">CRONACA</a></li>
                 <li><a href="economia.html" data-ajax="false" >ECONOMIA</a></li>
                 <li><a href="politica.html" data-ajax="false">POLITICA</a></li>
             </ul>
             </div>
         </div>
         <!-- Div tag for stories results -->  
-        <div  data-role="content" id="risultato"   data-theme="f">
+        <div  data-role="content" id="risultato" data-theme="f">
         <!-- The YQL statment will be assigned to src. -->  
-        <script src="http://query.yahooapis.com/v1/public/yql?q=select%20title%2Clink%2Cdescription%2CpubDate%20from%20rss%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621692%2Findex.rss%22&format=json&diagnostics=true&callback=top_cronaca"></script>
+        <script src="http://query.yahooapis.com/v1/public/yql?q=select%20title%2Clink%2Cdescription%2CpubDate%20from%20rss%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621705%2Findex.rss%22&format=json&diagnostics=true&callback=top_cinema"></script>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
             <div data-role="navbar" data-iconpos="left">
             <ul>
                 <li><a href="scienza.html" data-ajax="false">SCIENZA</a></li>
                 <li><a href="tech.html" data-ajax="false">TECH</a></li>
-                <li><a href="cinema.html" data-ajax="false">CINEMA</a></li>
+                <li><a href="cinema.html" data-theme="d" data-ajax="false">CINEMA</a></li>
                 <li><a href="mondo.html" data-ajax="false">MONDO</a></li>
             </ul>
             </div>
