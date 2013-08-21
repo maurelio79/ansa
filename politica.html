@@ -52,7 +52,16 @@
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato" data-theme="f">
         <!-- The YQL statment will be assigned to src. -->  
-        <script src="http://query.yahooapis.com/v1/public/yql?q=select%20title%2Clink%2Cdescription%2CpubDate%20from%20rss%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621696%2Findex.rss%22&format=json&diagnostics=true&callback=top_politica"></script>
+
+		<script>
+			if (window.localStorage.getItem("news") == null) {
+				window.localStorage.setItem("news", 5);
+			}
+			var number = window.localStorage.getItem("news");
+
+		document.write("<script src='http://query.yahooapis.com/v1/public/yql?q=select%20title%2Clink%2Cdescription%2CpubDate%20from%20rss(0%2C" + number + ")%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621696%2Findex.rss%22&format=json&diagnostics=true&callback=top_politica'><\/script>");
+		</script>
+
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
             <div data-role="navbar" data-iconpos="left">
