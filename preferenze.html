@@ -14,39 +14,27 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
     
-    
-    <script type='text/javascript'>  
-        // Parses returned response and extracts  
-        // the title, links, and text of each news story.  
-        function top_home(o){  
-        var items = o.query.results.item;  
-        var output = '';  
-        var no_items=items.length;  
-            for(var i=0;i<no_items;i++){  
-            var title = items[i].title;  
-            var link = items[i].link;  
-            var desc = items[i].description;
-            var pubDate = items[i].pubDate;  
-            output += "<h3><a href='" + link + "'>"+ title +"</a></h3><span>" + pubDate + "</span><p>" + desc + "</p>";  
-            }  
-        // Place news stories in div tag  
-        //document.getElementById('results').innerHTML = output;    
-        $("#risultato").append(output);
-    }  
-    </script> 
-    
-    <script>
-    $( "#homepage").on('pageinit',function(event){
-    
-    });
-    </script>
-    
     </head>  
 <body>
-    <div data-role="page" data-theme="f" id="homepage">
+    <div data-role="page" data-theme="f" id="preferenze">
+    <script>
+		$( "#preferenze").on('pageinit',function(event){
+			$("#button").bind( "click", function(event, ui) {
+				var value = $("#slider").val();
+				window.localStorage.setItem("news", value);
+			});
+		});      
+/*
+		$( "#preferenze").on('pageinit',function(event){
+			$("#button2").bind( "click", function(event, ui) {
+				window.localStorage.clear();
+				$("#slider").val(2)
+			});
+		});      
+*/      
+    </script>
         <div data-role="header" data-position="fixed"  data-theme="f">
-        <h1>Ansa Grabber</h1>
-		<a href="preferenze.html" data-type="button" data-icon="gear"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a>
+        <h1>Ansa Grabber - Preferenze</h1>
             <div data-role="navbar">
             <ul>
 				<li><a href="index.html" id="active" data-ajax="false">HOME</a></li>
@@ -57,9 +45,20 @@
             </div>
         </div>
         <!-- Div tag for stories results -->  
-        <div  data-role="content" id="risultato"   data-theme="f">
-        <!-- The YQL statment will be assigned to src. -->  
-        <script src="http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621689%2Findex.rss%22&format=json&diagnostics=true&callback=top_home"></script>
+        <div  data-role="content" id="risultato" data-theme="f">
+			<div data-role="fieldcontain">
+			   <label for="slider">Scegli il numero di news da visualizzare:</label>
+				<script>
+				var number = window.localStorage.getItem("news");
+				if (number == null){
+					number = 5;
+				}
+				document.write("<input type='range' name='slider' id='slider' value=" + number + " min='2' max='15' step='1'  \/>");
+				</script>
+<!--				<input type="button" name="button" id="button" value="Salva" data-theme="a"  />-->
+				<a href="index.html" id="button" data-theme="a" data-icon="check" data-ajax="false" data-role="button">Salva</a>
+				<!-- <input type="button" name="button2" id="button2" value="Reset" data-theme="a"  /> -->
+			</div>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
             <div data-role="navbar" data-iconpos="left">
