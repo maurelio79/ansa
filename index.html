@@ -27,7 +27,7 @@
             var link = items[i].link;  
             var desc = items[i].description;
             var pubDate = items[i].pubDate;  
-            output += "<h3><a href='" + link + "'>"+ title +"</a></h3><span>" + pubDate + "</span><p>" + desc + "</p>";  
+            output += "<div class='news_content'><h3><a href='" + link + "'>"+ title +"</a></h3><span>" + pubDate + "</span><p>" + desc + "</p></div>";  
             }  
         // Place news stories in div tag  
         //document.getElementById('results').innerHTML = output;    
@@ -36,49 +36,36 @@
     </script> 
     
     <script>
-    $( "#homepage").on('pageinit',function(event){
+    $( "#indexpage").on('pageinit',function(event){
     
     });
     </script>
     
     </head>  
 <body>
-    <div data-role="page" data-theme="f" id="homepage">
+    <div data-role="page" data-theme="f" id="indexpage">
         <div data-role="header" data-position="fixed"  data-theme="f">
+		<a href="index.html" data-type="button" data-icon="home"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
         <h1>Ansa Grabber</h1>
 		<a href="preferenze.html" data-type="button" data-icon="gear"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a>
-            <div data-role="navbar">
-            <ul>
-				<li><a href="index.html" id="active" data-ajax="false">HOME</a></li>
-                <li><a href="cronaca.html" data-ajax="false">CRONACA</a></li>
-                <li><a href="economia.html" data-ajax="false" >ECONOMIA</a></li>
-                <li><a href="politica.html" data-ajax="false">POLITICA</a></li>
-            </ul>
-            </div>
+
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
         <!-- The YQL statment will be assigned to src. -->
-
-		<script>
-			if (window.localStorage.getItem("news") == null) {
-				window.localStorage.setItem("news", 5);
-			}
-			var number = window.localStorage.getItem("news");
-
-		document.write("<script src='http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss(0%2C" + number + ")%20where%20url%3D%22http%3A%2F%2Fansa.feedsportal.com%2Fc%2F34225%2Ff%2F621689%2Findex.rss%22&format=json&diagnostics=true&callback=top_home'><\/script>");
-		</script>
-
+		    <ul data-role="listview" data-theme="f">
+		    <li><a href="home.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
+		    <li><a href="cronaca.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
+		    <li><a href="economia.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
+		    <li><a href="politica.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Politica</h3></a></li>
+			<li><a href="scienza.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Scienza</h3></a></li>
+		    <li><a href="tech.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Tecnologia</h3></a></li>
+		    <li><a href="cinema.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Cinema</h3></a></li>
+		    <li><a href="mondo.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>
+		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
-            <div data-role="navbar" data-iconpos="left">
-            <ul>
-                <li><a href="scienza.html" data-ajax="false">SCIENZA</a></li>
-                <li><a href="tech.html" data-ajax="false">TECH</a></li>
-                <li><a href="cinema.html" data-ajax="false">CINEMA</a></li>
-                <li><a href="mondo.html" data-ajax="false">MONDO</a></li>
-            </ul>
-            </div>
+
         </div>
     </div>
 </body>

@@ -27,7 +27,7 @@
             var link = items[i].link;  
             var desc = items[i].description;
             var pubDate = items[i].pubDate;  
-            output += "<h3><a href='" + link + "'>"+ title +"</a></h3><span>" + pubDate + "</span><p>" + desc + "</p>";  
+            output += "<div class='news_content'><h3><a href='" + link + "'>"+ title +"</a></h3><span>" + pubDate + "</span><p>" + desc + "</p></div>";  
             }  
         // Place news stories in div tag  
         //document.getElementById('results').innerHTML = output;    
@@ -39,15 +39,9 @@
 <body>
     <div data-role="page" data-theme="f">
         <div data-role="header" data-position="fixed"  data-theme="f">
-        <h1>Ansa Grabber</h1>
-            <div data-role="navbar">
-            <ul>
-				<li><a href="index.html"  data-ajax="false">HOME</a></li>
-                <li><a href="cronaca.html" data-ajax="false">CRONACA</a></li>
-                <li><a href="economia.html" data-ajax="false" >ECONOMIA</a></li>
-                <li><a href="politica.html" data-ajax="false">POLITICA</a></li>
-            </ul>
-            </div>
+		<a href="index.html" data-type="button" data-icon="home"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
+        <h1>Scienza</h1>
+		<a href="preferenze.html" data-type="button" data-icon="gear"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a>
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato" data-theme="f">
@@ -64,14 +58,7 @@
 
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
-            <div data-role="navbar" data-iconpos="left">
-            <ul>
-                <li><a href="scienza.html" id="active" data-ajax="false">SCIENZA</a></li>
-                <li><a href="tech.html" data-ajax="false">TECH</a></li>
-                <li><a href="cinema.html" data-ajax="false">CINEMA</a></li>
-                <li><a href="mondo.html" data-ajax="false">MONDO</a></li>
-            </ul>
-            </div>
+
         </div>
     </div>
 </body>
