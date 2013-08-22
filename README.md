@@ -11,6 +11,11 @@ Any comment is appreciated.
 
 <h4>CHANGELOG</h4>
 
+<p>21/08/2013</p>
+- Added preference page (now user can choose how many news see)
+- Improved active page visibility
+<hr />
+
 <p>20/08/2013</p>
 
 <b>First Release V 1.0</b><br />
