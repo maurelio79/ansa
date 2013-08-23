@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     
     
     <script type='text/javascript'>  
@@ -40,6 +41,28 @@
     
     });
     </script>
+
+	<script>
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+		function populateDB(tx) {
+        tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS PREFERENCE (id unique, category, link, status)');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (1, "Top News", "home.html", "active")');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (2, "Cronoca", "cronaca.html", "active")');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (3, "Economia", "economia.html", "inactive")');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (4, "Politica", "politica.html", "inactive")');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (5, "Scienza", "scienza.html", "active")');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (6, "Tecnologia", "tech.html", "active")');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (7, "Cinema", "cinema.html", "inactive")');
+        tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (8, "Mondo", "mondo.html", "active")');
+    }
+
+    function errorCB(err) {
+        alert("Error processing SQL: "+err.code);
+    }
+
+	</script>
     
     </head>  
 <body>
@@ -52,8 +75,46 @@
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
-        <!-- The YQL statment will be assigned to src. -->
 		    <ul data-role="listview" data-theme="f">
+
+		<script>
+			function queryDB(tx) {
+				tx.executeSql('SELECT category, link, status FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
+			}
+
+		function querySuccess(tx, results) {
+		    var len = results.rows.length;
+//		    console.log("DEMO table: " + len + " rows found.");
+		    for (var i=0; i<len; i++){
+//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+				var link = results.rows.item(i).link;
+				var category = results.rows.item(i).category;
+				var status = results.rows.item(i).status;
+
+				document.write("<li><a href='" + link + "' data-ajax='false'><img src='images/icon.jpg' width='80' height='80'><h3>'" + title + "'</h3> ");
+		    }
+		}
+
+			function successCB() {
+				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+				db.transaction(queryDB, errorCB);
+			}
+		</script>
+
+		<script>
+			function onDeviceReady() {
+				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+				if (window.localStorage.getItem("preference") == null) {
+					db.transaction(populateDB, errorCB, successCB);
+				} else {
+					db.transaction(queryDB, errorCB, successCB);
+				}
+			}
+		</script>
+
+
+        <!-- The YQL statment will be assigned to src. -->
+		    <!--<ul data-role="listview" data-theme="f">
 		    <li><a href="home.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
 		    <li><a href="cronaca.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
 		    <li><a href="economia.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
@@ -61,7 +122,7 @@
 			<li><a href="scienza.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Scienza</h3></a></li>
 		    <li><a href="tech.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Tecnologia</h3></a></li>
 		    <li><a href="cinema.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Cinema</h3></a></li>
-		    <li><a href="mondo.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>
+		    <li><a href="mondo.html" data-ajax="false"><img src="images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>-->
 		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
