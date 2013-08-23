@@ -11,6 +11,13 @@ Any comment is appreciated.
 
 <h4>CHANGELOG</h4>
 
+<p>22/08/2013</p>
+<b>New Release V 2.0</b><br />
+- New page layout
+- Possibility to set news to see
+- Usability improvment
+<hr />
+
 <p>21/08/2013</p>
 - Added preference page (now user can choose how many news see)
 - Improved active page visibility
