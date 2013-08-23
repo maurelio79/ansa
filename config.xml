@@ -81,10 +81,11 @@
     -->
 
     <!-- This is required for native Android hooks
+	 -->
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
 	
-	 -->
+
 
 </widget>
