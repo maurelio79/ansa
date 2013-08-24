@@ -56,6 +56,7 @@
         tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (6, "Tecnologia", "tech.html", "active")');
         tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (7, "Cinema", "cinema.html", "inactive")');
         tx.executeSql('INSERT INTO PREFERENCE (id, category, link, status) VALUES (8, "Mondo", "mondo.html", "active")');
+alert("Ho creato il DB");
     }
 
     function errorCB(err) {
@@ -75,11 +76,12 @@
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
-		    <ul data-role="listview" data-theme="f">
+
 
 		<script>
 			function queryDB(tx) {
 				tx.executeSql('SELECT category, link, status FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
+				alert("Ho eseguito la select");
 			}
 
 		function querySuccess(tx, results) {
@@ -90,8 +92,11 @@
 				var link = results.rows.item(i).link;
 				var category = results.rows.item(i).category;
 				var status = results.rows.item(i).status;
+alert("setto le variabili");
+			
+	$('#mylist').html("<li><a href=" + link + " data-ajax='false'><img src='images/icon.jpg' width='80' height='80'><h3>" + category + "</h3></a></li>");
 
-				document.write("<li><a href='" + link + "' data-ajax='false'><img src='images/icon.jpg' width='80' height='80' \/><h3>'" + title + "'</h3></a> ");
+alert("Stampo il risultato");
 		    }
 		}
 
@@ -104,14 +109,16 @@
 		<script>
 			function onDeviceReady() {
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+				alert("Device pronto e lancio onDeviceReady");
 				if (window.localStorage.getItem("preference") == null) {
 					db.transaction(populateDB, errorCB, successCB);
+					alert("Local Storage non definita e creo il DB");
 				} else {
 					db.transaction(queryDB, errorCB, successCB);
 				}
 			}
 		</script>
-
+		    <ul data-role="listview" data-theme="f" id="mylist">
 
         <!-- The YQL statment will be assigned to src. -->
 		    <!--<ul data-role="listview" data-theme="f">
