@@ -11,6 +11,11 @@ Any comment is appreciated.
 
 <h4>CHANGELOG</h4>
 
+<p>24/08/2013</p>
+- Improved top button usability
+- Removed unecessary page (creating feed page dinamically)
+<hr />
+
 <p>22/08/2013</p>
 <b>New Release V 2.0</b><br />
 - New page layout
