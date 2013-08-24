@@ -13,28 +13,10 @@
     <link rel="stylesheet" href="css/style.css" />
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
-	<!--<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>-->
-    
-    
-    <script type='text/javascript'>  
-        // Parses returned response and extracts  
-        // the title, links, and text of each news story.  
-        function top_home(o){  
-        var items = o.query.results.item;  
-        var output = '';  
-        var no_items=items.length;  
-            for(var i=0;i<no_items;i++){  
-            var title = items[i].title;  
-            var link = items[i].link;  
-            var desc = items[i].description;
-            var pubDate = items[i].pubDate;  
-            output += "<div class='news_content'><h3><a href='" + link + "'>"+ title +"</a></h3><span>" + pubDate + "</span><p>" + desc + "</p></div>";  
-            }  
-        // Place news stories in div tag  
-        //document.getElementById('results').innerHTML = output;    
-        $("#risultato").append(output);
-    }  
-    </script> 
+	<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+	<script>
+	document.addEventListener("deviceready", onDeviceReady, false);
+	</script>
     
     </head>  
 <body>
@@ -55,20 +37,81 @@
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
+	<script>
+	function querySuccess(tx, results) {
+				var len = results.rows.length;
+	//		    console.log("DEMO table: " + len + " rows found.");
+				for (var i=0; i<len; i++){
+	//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+					var category = results.rows.item(i).category;
+					var status = results.rows.item(i).status;
+					var id = results.rows.item(i).idTag;
+				$('#category-list').html("<li><a href='news.html' data-ajax='false' id=" + idTag + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + category + "</h3></a></li>");
+				}
+			}
+	</script>
         <!-- The YQL statment will be assigned to src. -->
-		    <ul data-role="listview" data-theme="f">
-		    <li><a href="news.html" data-ajax="false" id="home"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
+		    <ul data-role="listview" data-theme="f" id="category-list">
+		    <!--<li><a href="news.html" data-ajax="false" id="home"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
 		    <li><a href="news.html" data-ajax="false" id="cronaca"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
 		    <li><a href="news.html" data-ajax="false" id="economia"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
 		    <li><a href="news.html" data-ajax="false" id="politica"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Politica</h3></a></li>
 			<li><a href="news.html" data-ajax="false" id="scienza"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Scienza</h3></a></li>
 		    <li><a href="news.html" data-ajax="false" id="tech"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Tecnologia</h3></a></li>
 		    <li><a href="news.html" data-ajax="false" id="cinema"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Cinema</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="mondo"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="mondo"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>-->
 		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
         </div>
     </div>
+
+	<script>
+	function populateDB(tx) {
+		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
+		    tx.executeSql('CREATE TABLE IF NOT EXISTS PREFERENCE (id unique, category, status, idTag)');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (1, "Top News", "active", "home")');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (2, "Cronoca",  "active", "cronaca")');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (3, "Economia",  "inactive", economia)');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (4, "Politica",  "inactive", "politica")');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (5, "Scienza",  "active", "scienza")');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (6, "Tecnologia", "active", "tech")');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (7, "Cinema",  "inactive", "cinema")');
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (8, "Mondo", "active", "mondo")');
+		}
+	</script>
+
+	<script>
+    function errorCB(err) {
+        alert("Error processing SQL: "+err.code);
+    }
+	</script>
+
+	<script>
+	function successCB() {
+		window.localStorage.setItem("preference", "custom");
+		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+		db.transaction(queryDB, errorCB);
+	}
+	</script>
+
+	<script>
+	function queryDB(tx) {
+		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
+	}
+	</script>
+
+	<script>	
+	function onDeviceReady() {
+				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+				if (window.localStorage.getItem("preference") == null) {
+				//App runs for first time
+					db.transaction(populateDB, errorCB, successCB);
+				} else {
+				//App already runs one time
+					db.transaction(queryDB, errorCB, successCB);
+				}
+			}
+	</script>
 </body>
 </html>  

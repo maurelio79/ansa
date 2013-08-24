@@ -24,14 +24,11 @@
 				window.localStorage.setItem("news", value);
 			});
 		});      
-/*
+
 		$( "#preferenze").on('pageinit',function(event){
-			$("#button2").bind( "click", function(event, ui) {
-				window.localStorage.clear();
-				$("#slider").val(2)
-			});
+			$("#home").attr('checked', true).checkboxradio("refresh");
 		});      
-*/      
+      
     </script>
         <div data-role="header" data-position="fixed"  data-theme="f">
 		<a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
@@ -40,7 +37,7 @@
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato" data-theme="f">
 			<div data-role="fieldcontain">
-			   <label for="slider">Scegli il numero di news da visualizzare:</label>
+			   <label for="slider">Numero di news visualizzate:</label>
 				<script>
 				var number = window.localStorage.getItem("news");
 				if (number == null){
@@ -48,7 +45,30 @@
 				}
 				document.write("<input type='range' name='slider' id='slider' value=" + number + " min='2' max='15' step='1'  \/>");
 				</script>
-				<a href="index.html" id="button" data-theme="a" data-icon="check" data-ajax="false" data-role="button">Salva</a>
+				<a href="index.html" id="button" data-theme="a" data-icon="check" data-ajax="false" data-role="button"  class="ui-btn-active">Salva</a>
+			</div>
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup">
+					<legend>Categorie visualizzate:</legend>
+					<input type="checkbox" name="home" id="home" />
+					<label for="home">Top News</label>
+					<input type="checkbox" name="home" id="cronaca" />
+					<label for="cronaca">Cronaca</label>
+					<input type="checkbox" name="home" id="economia" />
+					<label for="economia">Economia</label>
+					<input type="checkbox" name="politica" id="politica" />
+					<label for="politica">Politica</label>
+
+					<input type="checkbox" name="scienza" id="scienza" />
+					<label for="scienza">Scienza</label>
+					<input type="checkbox" name="tech" id="tech" />
+					<label for="tech">Tecnologia</label>
+					<input type="checkbox" name="cinema" id="cinema" />
+					<label for="cinema">Cinema</label>
+					<input type="checkbox" name="mondo" id="mondo" />
+					<label for="mondo">Mondo</label>
+				</fieldset>
+				<a href="index.html" id="button_category" data-theme="f" data-icon="check" data-ajax="false" data-role="button" class="ui-btn-active">Salva</a>
 			</div>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
