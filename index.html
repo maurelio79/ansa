@@ -69,15 +69,7 @@
 	function onDeviceReady() {
 				alert("Il device è pronto");
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 2000000);
-				//if (window.localStorage.getItem("option") == null) {
-				//App runs for first time
-				//alert("First run");
-					db.transaction(populateDB, errorCB, successCB);
-				}/* else {
-				//App already runs one time
-				alert("Second run");
-					db.transaction(queryDB, errorCB, successCB);
-				}*/
+				db.transaction(populateDB, errorCB, successCB);
 			}
 
 	</script>
