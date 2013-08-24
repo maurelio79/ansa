@@ -53,6 +53,7 @@
 		    tx.executeSql('CREATE TABLE IF NOT EXISTS PREFERENCE (id unique, category, status, idTag)');
 			alert("Prima riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (1, "Top News", "active", "home")');
+			alert("Seconda riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (2, "Cronoca",  "active", "cronaca")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (3, "Economia",  "inactive", economia)');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (4, "Politica",  "inactive", "politica")');
