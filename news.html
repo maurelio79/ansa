@@ -13,13 +13,13 @@
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
-	<!--<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>-->
+	<script src="js/custom.js"></script>
     
     
     <script type='text/javascript'>  
         // Parses returned response and extracts  
         // the title, links, and text of each news story.  
-        function top_home(o){  
+        function top_feed(o){  
         var items = o.query.results.item;  
         var output = '';  
         var no_items=items.length;  
@@ -35,38 +35,23 @@
         $("#risultato").append(output);
     }  
     </script> 
-    
+        
     </head>  
 <body>
-    <div data-role="page" data-theme="f" id="indexpage">
-    <script>
-    $( "#indexpage").on('pageinit',function(event){
-		$("a").bind( "click", function(event, ui) {
-			pos = $(this).attr("id");
-			//alert(pos);
-			window.sessionStorage.setItem("feed", pos);
-		});
-    });
-    </script>
+    <div data-role="page" data-theme="f">
         <div data-role="header" data-position="fixed"  data-theme="f">
 		<a href="index.html" data-type="button" data-icon="home"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
-        <h1>Ansa Grabber</h1>
+		<script>
+			document.write(pageTitle);
+		</script>
 		<a href="preferenze.html" data-type="button" data-icon="gear"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a>
-
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
-        <!-- The YQL statment will be assigned to src. -->
-		    <ul data-role="listview" data-theme="f">
-		    <li><a href="news.html" data-ajax="false" id="home"><img src="images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="cronaca"><img src="images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="economia"><img src="images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="politica"><img src="images/icon.jpg" width="80" height="80" /><h3>Politica</h3></a></li>
-			<li><a href="news.html" data-ajax="false" id="scienza"><img src="images/icon.jpg" width="80" height="80" /><h3>Scienza</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="tech"><img src="images/icon.jpg" width="80" height="80" /><h3>Tecnologia</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="cinema"><img src="images/icon.jpg" width="80" height="80" /><h3>Cinema</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="mondo"><img src="images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>
-		    </ul>
+        <!-- The YQL statment will be assigned to src. -->  
+			<script>
+				document.write(pageFeed);
+			</script>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
         </div>
