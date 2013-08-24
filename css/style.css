@@ -16,3 +16,7 @@ div#risultato span {font-size: 11px; font-style: italic;}
 	border: 1px solid #009245;
     }
 
+.my-button-home { width: 30px; height: 30px; background-image: url("images/home.png"); background-size: 28px 28px; background-position: center center; }
+
+.my-button-preference { width: 30px; height: 30px; background-image: url("images/gear.png"); background-size: 28px 28px; background-position: center center; }
+

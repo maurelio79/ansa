@@ -43,29 +43,28 @@
     $( "#indexpage").on('pageinit',function(event){
 		$("a").bind( "click", function(event, ui) {
 			pos = $(this).attr("id");
-			//alert(pos);
 			window.sessionStorage.setItem("feed", pos);
 		});
     });
     </script>
-        <div data-role="header" data-position="fixed"  data-theme="f">
-		<a href="index.html" data-type="button" data-icon="home"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
+        <div data-role="header" data-position="fixed"  data-theme="f" id="myHeader">
+		<a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
         <h1>Ansa Grabber</h1>
-		<a href="preferenze.html" data-type="button" data-icon="gear"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a>
+		<a href="preferenze.html" class="my-button-preference"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a>
 
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
         <!-- The YQL statment will be assigned to src. -->
 		    <ul data-role="listview" data-theme="f">
-		    <li><a href="news.html" data-ajax="false" id="home"><img src="images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="cronaca"><img src="images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="economia"><img src="images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="politica"><img src="images/icon.jpg" width="80" height="80" /><h3>Politica</h3></a></li>
-			<li><a href="news.html" data-ajax="false" id="scienza"><img src="images/icon.jpg" width="80" height="80" /><h3>Scienza</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="tech"><img src="images/icon.jpg" width="80" height="80" /><h3>Tecnologia</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="cinema"><img src="images/icon.jpg" width="80" height="80" /><h3>Cinema</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="mondo"><img src="images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="home"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="cronaca"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="economia"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="politica"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Politica</h3></a></li>
+			<li><a href="news.html" data-ajax="false" id="scienza"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Scienza</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="tech"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Tecnologia</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="cinema"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Cinema</h3></a></li>
+		    <li><a href="news.html" data-ajax="false" id="mondo"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>
 		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
