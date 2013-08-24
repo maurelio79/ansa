@@ -28,6 +28,7 @@
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (6, "Tecnologia", "active", "tech")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (7, "Cinema",  "inactive", "cinema")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (8, "Mondo", "active", "mondo")');
+			window.localStorage.setItem("option", "custom");
 		}
 
 
@@ -57,7 +58,6 @@
 		}
 
 	function successCB() {
-		window.localStorage.setItem("option", "custom");
 		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 		db.transaction(queryDB, errorCB);
 	}
@@ -70,7 +70,7 @@ alert("first run");
 					db.transaction(populateDB, errorCB, successCB);
 				} else {
 alert("second run");
-					db.transaction(queryDB, errorCB, successCB);					
+					db.transaction(successCB, errorCB);					
 				}
 			}
 
