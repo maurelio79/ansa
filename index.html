@@ -43,14 +43,16 @@
 	function querySuccess(tx, results) {
 					alert("Stampo tutto");
 					var len = results.rows.length;
+					var output = '';
 		//		    console.log("DEMO table: " + len + " rows found.");
 					for (var i=0; i<len; i++){
 		//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
 						var categoria = results.rows.item(i).category;
 						var stato = results.rows.item(i).status;
 						var idClick = results.rows.item(i).idTag;
-					$('#category-list').append("<li><a href='news.html' data-ajax='false' id=" + idClick + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + categoria + "<\/h3><\/a><\/li>");
+						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + categoria + "</h3></a></li>";
 					}
+					$("#category-list").append(output);
 				}
 
 
@@ -68,6 +70,7 @@
 
 	function onDeviceReady() {
 				alert("Il device è pronto");
+				
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 2000000);
 				db.transaction(populateDB, errorCB, successCB);
 			}
