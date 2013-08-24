@@ -8,15 +8,17 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     
-
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
+    <link rel="stylesheet" href="css/ansa.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.mobile-1.3.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script type="text/javascript" charset="utf-8">
 	document.addEventListener("deviceready", onDeviceReady, false);
 
 	function populateDB(tx) {
-				alert("Popolo il DB");
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
-				alert("Creo tabella");
 		    tx.executeSql('CREATE TABLE IF NOT EXISTS PREFERENCE (id unique, category, status, idTag)');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (1, "Top News", "active", "home")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (2, "Cronoca",  "active", "cronaca")');
@@ -26,18 +28,15 @@
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (6, "Tecnologia", "active", "tech")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (7, "Cinema",  "inactive", "cinema")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (8, "Mondo", "active", "mondo")');
-					alert("Tabella popolata");
 		}
 
 
 
 	function queryDB(tx) {
-				alert("Lancio query");
 		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
 	}
 
 	function querySuccess(tx, results) {
-					alert("Stampo tutto");
 					var len = results.rows.length;
 					var output = '';
 		//		    console.log("DEMO table: " + len + " rows found.");
@@ -49,7 +48,6 @@
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + "><h3>" + categoria + "</h3></a></li>";
 					}
 					$("#category-list").append(output);
-					//document.write(output);
 				}
 
 
@@ -59,25 +57,25 @@
 		}
 
 	function successCB() {
-						alert("Setto var e lancio query");
 		window.localStorage.setItem("option", "custom");
 		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 		db.transaction(queryDB, errorCB);
 	}
 
 	function onDeviceReady() {
-				alert("Il device è pronto");
-				
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
-				db.transaction(populateDB, errorCB, successCB);
+				var settings = window.localStorage.getItem("option");
+				if (settings == null){
+alert("first run");
+					db.transaction(populateDB, errorCB, successCB);
+				} else {
+alert("second run");
+					db.transaction(queryDB, errorCB, successCB);					
+				}
 			}
 
 	</script>
-        <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
-    <link rel="stylesheet" href="css/ansa.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/jquery.mobile-1.3.2.min.js"></script>
+    
     </head>  
 <body>
     <div data-role="page" data-theme="f" id="indexpage">
