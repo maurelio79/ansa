@@ -17,35 +17,6 @@
 	<script type="text/javascript" charset="utf-8">
 	document.addEventListener("deviceready", onDeviceReady, false);
 
-	function querySuccess(tx, results) {
-					alert("Stampo tutto");
-					var len = results.rows.length;
-		//		    console.log("DEMO table: " + len + " rows found.");
-					for (var i=0; i<len; i++){
-		//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-						var category = results.rows.item(i).category;
-						var status = results.rows.item(i).status;
-						var id = results.rows.item(i).idTag;
-					$('#category-list').html("<li><a href='news.html' data-ajax='false' id=" + idTag + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + category + "</h3></a></li>");
-					}
-				}
-
-	function errorCB(err) {
-		    alert("Error processing SQL: "+err.code);
-		}
-
-	function successCB() {
-		/*				alert("Setto var e lancio query");
-		window.localStorage.setItem("option", "custom");*/
-		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 2000000);
-		db.transaction(queryDB, errorCB);
-	}
-
-	function queryDB(tx) {
-				alert("Lancio query");
-		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
-	}
-
 	function populateDB(tx) {
 				alert("Popolo il DB");
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
@@ -61,6 +32,39 @@
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (8, "Mondo", "active", "mondo")');
 					alert("Tabella popolata");
 		}
+
+
+
+	function queryDB(tx) {
+				alert("Lancio query");
+		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
+	}
+
+	function querySuccess(tx, results) {
+					alert("Stampo tutto");
+					var len = results.rows.length;
+		//		    console.log("DEMO table: " + len + " rows found.");
+					for (var i=0; i<len; i++){
+		//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+						var category = results.rows.item(i).category;
+						var status = results.rows.item(i).status;
+						var id = results.rows.item(i).idTag;
+					$('#category-list').html("<li><a href='news.html' data-ajax='false' id=" + idTag + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + category + "</h3></a></li>");
+					}
+				}
+
+
+
+	function errorCB(err) {
+		    alert("Error processing SQL: "+err.code);
+		}
+
+	function successCB() {
+						alert("Setto var e lancio query");
+		window.localStorage.setItem("option", "custom");
+		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 2000000);
+		db.transaction(queryDB, errorCB);
+	}
 
 	function onDeviceReady() {
 				alert("Il device è pronto");
