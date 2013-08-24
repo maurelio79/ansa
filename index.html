@@ -24,7 +24,7 @@
 		    tx.executeSql('CREATE TABLE IF NOT EXISTS PREFERENCE (id unique, category, status, idTag)');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (1, "Top News", "active", "home")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (2, "Cronoca",  "active", "cronaca")');
-		    /*tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (3, "Economia",  "inactive", economia)');*/
+		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (3, "Economia",  "inactive", "economia")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (4, "Politica",  "inactive", "politica")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (5, "Scienza",  "active", "scienza")');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (6, "Tecnologia", "active", "tech")');
@@ -46,10 +46,10 @@
 		//		    console.log("DEMO table: " + len + " rows found.");
 					for (var i=0; i<len; i++){
 		//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-						var category = results.rows.item(i).category;
-						var status = results.rows.item(i).status;
-						var id = results.rows.item(i).idTag;
-					$('#category-list').html("<li><a href='news.html' data-ajax='false' id=" + idTag + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + category + "</h3></a></li>");
+						var categoria = results.rows.item(i).category;
+						var stato = results.rows.item(i).status;
+						var idClick = results.rows.item(i).idTag;
+					$('#category-list').html("<li><a href='news.html' data-ajax='false' id=" + idClick + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + categoria + "<\/h3><\/a><\/li>");
 					}
 				}
 
