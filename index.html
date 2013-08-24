@@ -35,8 +35,8 @@
 		}
 
 	function successCB() {
-						alert("Setto var e lancio query");
-		window.localStorage.setItem("option", "custom");
+		/*				alert("Setto var e lancio query");
+		window.localStorage.setItem("option", "custom");*/
 		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 2000000);
 		db.transaction(queryDB, errorCB);
 	}
