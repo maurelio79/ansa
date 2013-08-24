@@ -52,7 +52,7 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + "><h3>" + categoria + "</h3></a></li>";
 					}
-					$("#category-list").append(output);
+					//$("#category-list").append(output);
 				}
 
 
@@ -99,6 +99,9 @@
 
         <!-- The YQL statment will be assigned to src. -->
 		    <ul data-role="listview" data-theme="f" id="category-list">
+			<script>
+				document.write(output);
+			</script>
 		    <!--<li><a href="news.html" data-ajax="false" id="home"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
 		    <li><a href="news.html" data-ajax="false" id="cronaca"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
 		    <li><a href="news.html" data-ajax="false" id="economia"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
