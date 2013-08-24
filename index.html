@@ -36,7 +36,7 @@
 
 	function successCB() {
 						alert("Setto var e lancio query");
-		window.localStorage.setItem("preference", "custom");
+		window.localStorage.setItem("option", "custom");
 		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 		db.transaction(queryDB, errorCB);
 	}
@@ -73,7 +73,7 @@
 	function onDeviceReady() {
 				alert("Il device è pronto");
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
-				if (window.localStorage.getItem("preference") == null) {
+				if (window.localStorage.getItem("option") == null) {
 				//App runs for first time
 				alert("First run");
 					db.transaction(populateDB, errorCB, successCB);
