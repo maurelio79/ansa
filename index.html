@@ -39,6 +39,7 @@
         <div  data-role="content" id="risultato"   data-theme="f">
 	<script>
 	function querySuccess(tx, results) {
+				alert("Stampo tutto");
 				var len = results.rows.length;
 	//		    console.log("DEMO table: " + len + " rows found.");
 				for (var i=0; i<len; i++){
@@ -68,6 +69,7 @@
 
 	<script>
 	function populateDB(tx) {
+				alert("Popolo il DB");
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
 		    tx.executeSql('CREATE TABLE IF NOT EXISTS PREFERENCE (id unique, category, status, idTag)');
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (1, "Top News", "active", "home")');
@@ -89,6 +91,7 @@
 
 	<script>
 	function successCB() {
+						alert("Setto var e lancio query");
 		window.localStorage.setItem("preference", "custom");
 		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 		db.transaction(queryDB, errorCB);
@@ -97,18 +100,22 @@
 
 	<script>
 	function queryDB(tx) {
+				alert("Lancio query");
 		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
 	}
 	</script>
 
 	<script>	
 	function onDeviceReady() {
+				alert("Il device è pronto");
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 				if (window.localStorage.getItem("preference") == null) {
 				//App runs for first time
+				alert("Firsst run");
 					db.transaction(populateDB, errorCB, successCB);
 				} else {
 				//App already runs one time
+				alert("Second run");
 					db.transaction(queryDB, errorCB, successCB);
 				}
 			}
