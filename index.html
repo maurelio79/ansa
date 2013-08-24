@@ -49,7 +49,7 @@
 						var categoria = results.rows.item(i).category;
 						var stato = results.rows.item(i).status;
 						var idClick = results.rows.item(i).idTag;
-					$('#category-list').html("<li><a href='news.html' data-ajax='false' id=" + idClick + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + categoria + "<\/h3><\/a><\/li>");
+					$('#category-list').append("<li><a href='news.html' data-ajax='false' id=" + idClick + "><img src='css/images/icon.jpg' width='80' height='80'><h3>" + categoria + "<\/h3><\/a><\/li>");
 					}
 				}
 
