@@ -31,13 +31,13 @@
 				}
 
 	function errorCB(err) {
-		    console.log("Error processing SQL: "+err.code);
+		    alert("Error processing SQL: "+err.code);
 		}
 
 	function successCB() {
 						alert("Setto var e lancio query");
 		window.localStorage.setItem("option", "custom");
-		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 2000000);
 		db.transaction(queryDB, errorCB);
 	}
 
@@ -51,28 +51,20 @@
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
 				alert("Creo tabella");
 		    tx.executeSql('CREATE TABLE IF NOT EXISTS PREFERENCE (id unique, category, status, idTag)');
-			alert("Prima riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (1, "Top News", "active", "home")');
-			alert("Seconda riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (2, "Cronoca",  "active", "cronaca")');
-			alert("terza riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (3, "Economia",  "inactive", economia)');
-			alert("quarta riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (4, "Politica",  "inactive", "politica")');
-			alert("quinta riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (5, "Scienza",  "active", "scienza")');
-			alert("Sesta riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (6, "Tecnologia", "active", "tech")');
-			alert("Settima riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (7, "Cinema",  "inactive", "cinema")');
-			alert("Ottava riga");
 		    tx.executeSql('INSERT INTO PREFERENCE (id, category, status, idTag) VALUES (8, "Mondo", "active", "mondo")');
 					alert("Tabella popolata");
 		}
 
 	function onDeviceReady() {
 				alert("Il device è pronto");
-				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 2000000);
 				if (window.localStorage.getItem("option") == null) {
 				//App runs for first time
 				alert("First run");
