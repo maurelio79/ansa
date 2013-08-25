@@ -13,9 +13,9 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
 
-	<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script type="text/javascript" charset="utf-8">
-	//document.addEventListener("deviceready", onDeviceReady, false);
+	document.addEventListener("deviceready", onDeviceReady, false);
 
 	function populateDB(tx) {
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
@@ -47,7 +47,8 @@
 						var stato = results.rows.item(i).status;
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
-						$(output).appendTo("#category-list");
+						//$(output).appendTo("#category-list");
+						document.getElementById('category-list').innerHTML(output);
 					}
 
 				}
@@ -97,14 +98,14 @@ alert("second run");
 
         <!-- The YQL statment will be assigned to src. -->
 		    <ul data-role="listview" id="category-list">
-		    <li><a href="news.html" data-ajax="false" id="home">Top News</a></li>
+		    <!--<li><a href="news.html" data-ajax="false" id="home">Top News</a></li>
 		    <li><a href="news.html" data-ajax="false" id="cronaca">Cronaca</a></li>
 		    <li><a href="news.html" data-ajax="false" id="economia">Economia</a></li>
 		    <li><a href="news.html" data-ajax="false" id="politica">Politica</a></li>
 			<li><a href="news.html" data-ajax="false" id="scienza">Scienza</a></li>
 		    <li><a href="news.html" data-ajax="false" id="tech">Tecnologia</a></li>
 		    <li><a href="news.html" data-ajax="false" id="cinema">Cinema</a></li>
-		    <li><a href="news.html" data-ajax="false" id="mondo">Mondo</a></li>
+		    <li><a href="news.html" data-ajax="false" id="mondo">Mondo</a></li>-->
 		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
