@@ -26,7 +26,7 @@ div#risultato span {font-size: 11px; font-style: italic;}
     font-size: 22px;
 	list-style-type: none;
     }
-
+*/
 #category-list li{
     background-color: #fff;
     -moz-box-shadow: 0 0 5px #888;
@@ -44,4 +44,4 @@ div#risultato span {font-size: 11px; font-style: italic;}
     	display: block;
 		text-decoration: none;
     }
-*/
+
