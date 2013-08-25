@@ -49,7 +49,6 @@
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
 						$(output).appendTo("#category-list");
-						$("#category-list").listview();
 				}
 
 	function errorCB(err) {
@@ -80,6 +79,7 @@ alert("second run");
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
     $( "#indexpage").on('pageinit',function(event){
+		$("#category-list").trigger("create");
 		$("a").bind( "click", function(event, ui) {
 			pos = $(this).attr("id");
 			window.sessionStorage.setItem("feed", pos);
