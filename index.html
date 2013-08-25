@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="css/style.css" />
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
 	<script type="text/javascript" charset="utf-8">
-	document.addEventListener("deviceready", onDeviceReady, false);
+	//document.addEventListener("deviceready", onDeviceReady, false);
 
 	function populateDB(tx) {
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
@@ -49,13 +49,6 @@
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
 						$(output).appendTo("#category-list");
-							$('#indexpage').live('pageshow',function(event){
-								$("#category-list").trigger("create");
-								$("a").bind( "click", function(event, ui) {
-									pos = $(this).attr("id");
-									window.sessionStorage.setItem("feed", pos);
-								});
-							});
 				}
 
 	function errorCB(err) {
@@ -85,8 +78,12 @@ alert("second run");
 <body>
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
-    //$( "#indexpage").on('pageinit',function(event){
-
+    $( "#indexpage").on('pageinit',function(event){
+				$("a").bind( "click", function(event, ui) {
+					pos = $(this).attr("id");
+					window.sessionStorage.setItem("feed", pos);
+				});
+			});
     </script>
         <div data-role="header" data-position="fixed"  data-theme="f" id="myHeader">
 		<a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
@@ -99,14 +96,14 @@ alert("second run");
 
         <!-- The YQL statment will be assigned to src. -->
 		    <ul data-role="listview" id="category-list">
-		    <!-- <li><a href="news.html" data-ajax="false" id="home">Top News</a></li>
+		    <li><a href="news.html" data-ajax="false" id="home">Top News</a></li>
 		    <li><a href="news.html" data-ajax="false" id="cronaca">Cronaca</a></li>
 		    <li><a href="news.html" data-ajax="false" id="economia">Economia</a></li>
 		    <li><a href="news.html" data-ajax="false" id="politica">Politica</a></li>
 			<li><a href="news.html" data-ajax="false" id="scienza">Scienza</a></li>
 		    <li><a href="news.html" data-ajax="false" id="tech">Tecnologia</a></li>
 		    <li><a href="news.html" data-ajax="false" id="cinema">Cinema</a></li>
-		    <li><a href="news.html" data-ajax="false" id="mondo">Mondo</a></li> -->
+		    <li><a href="news.html" data-ajax="false" id="mondo">Mondo</a></li>
 		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
