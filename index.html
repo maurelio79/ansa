@@ -48,9 +48,7 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
-					//$('#indexpage').live('pageshow',function(event){
-						$("#category-list").append(output).trigger('create');
-					//});
+						$("#category-list").append(output).trigger( "enhance" );
 				}
 
 	function errorCB(err) {
