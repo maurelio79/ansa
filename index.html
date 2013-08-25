@@ -48,7 +48,7 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 						//$(output).appendTo("#category-list");
-						document.getElementById('category-list').innerHTML(output);
+						document.getElementById('category-list').innerHTML = output;
 					}
 
 				}
