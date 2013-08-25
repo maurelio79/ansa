@@ -19,4 +19,28 @@ div#risultato span {font-size: 11px; font-style: italic;}
 .my-button-home { width: 30px; height: 30px; background-image: url("images/home.png"); background-size: 28px 28px; background-position: center center; }
 
 .my-button-preference { width: 30px; height: 30px; background-image: url("images/gear.png"); background-size: 28px 28px; background-position: center center; }
+/*
+#category-list {
+    width: 95%;
+    color: #666;
+    font-size: 22px;
+	list-style-type: none;
+    }
 
+#category-list li{
+    background-color: #fff;
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    padding: 5px;
+	margin: auto;
+    margin-bottom: 8px;
+	border: 1px solid #009245;
+	line-height: 42px;
+    }
+
+#category-list li a{
+    	display: block;
+		text-decoration: none;
+    }
+*/

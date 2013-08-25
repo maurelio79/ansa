@@ -46,12 +46,10 @@
 						var categoria = results.rows.item(i).category;
 						var stato = results.rows.item(i).status;
 						var idClick = results.rows.item(i).idTag;
-						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + "><h3>" + categoria + "</h3></a></li>";
+						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
-					$("#category-list").append(output);
+					$("#category-list").append(output).trigger('create');
 				}
-
-
 
 	function errorCB(err) {
 		    alert("Error processing SQL: "+err.code);
@@ -94,18 +92,18 @@ alert("second run");
 
         </div>
         <!-- Div tag for stories results -->  
-        <div  data-role="content" id="risultato"   data-theme="f">
+        <div  data-role="content" id="risultato" data-theme="f">
 
         <!-- The YQL statment will be assigned to src. -->
-		    <ul data-role="listview" data-theme="f" id="category-list">
-		    <!--<li><a href="news.html" data-ajax="false" id="home"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Top News</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="cronaca"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Cronaca</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="economia"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Economia</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="politica"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Politica</h3></a></li>
-			<li><a href="news.html" data-ajax="false" id="scienza"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Scienza</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="tech"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Tecnologia</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="cinema"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Cinema</h3></a></li>
-		    <li><a href="news.html" data-ajax="false" id="mondo"><img src="css/images/icon.jpg" width="80" height="80" /><h3>Mondo</h3></a></li>-->
+		    <ul data-role="listview" id="category-list">
+		    <!-- <li><a href="news.html" data-ajax="false" id="home">Top News</a></li>
+		    <li><a href="news.html" data-ajax="false" id="cronaca">Cronaca</a></li>
+		    <li><a href="news.html" data-ajax="false" id="economia">Economia</a></li>
+		    <li><a href="news.html" data-ajax="false" id="politica">Politica</a></li>
+			<li><a href="news.html" data-ajax="false" id="scienza">Scienza</a></li>
+		    <li><a href="news.html" data-ajax="false" id="tech">Tecnologia</a></li>
+		    <li><a href="news.html" data-ajax="false" id="cinema">Cinema</a></li>
+		    <li><a href="news.html" data-ajax="false" id="mondo">Mondo</a></li> -->
 		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
