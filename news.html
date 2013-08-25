@@ -40,11 +40,11 @@
 <body>
     <div data-role="page" data-theme="f">
         <div data-role="header" data-position="fixed"  data-theme="f">
-		<a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
+		<!-- <a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a> -->
 		<script>
 			document.write(pageTitle);
 		</script>
-		<a href="preferenze.html" class="my-button-preference"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a>
+		<!-- <a href="preferenze.html" class="my-button-preference"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a> -->
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato"   data-theme="f">
@@ -54,6 +54,12 @@
 			</script>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
+			<div data-role="navbar" data-iconpos="top">
+				<ul>
+					<li><a href="index.html" data-icon="home" data-ajax="false">Home</a></li>
+					<li><a href="preferenze.html" data-icon="gear" data-ajax="false">Preferenze</a></li>
+				</ul>
+			</div>
         </div>
     </div>
 </body>
