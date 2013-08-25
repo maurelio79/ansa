@@ -48,7 +48,8 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
-						$(output).appendTo("#category-list").trigger("create");
+						$(output).appendTo("#category-list");
+						$("#category-list").listview();
 				}
 
 	function errorCB(err) {
