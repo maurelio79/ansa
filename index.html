@@ -49,6 +49,13 @@
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
 						$(output).appendTo("#category-list");
+							$('#indexpage').live('pageshow',function(event){
+								$("#category-list").trigger("create");
+								$("a").bind( "click", function(event, ui) {
+									pos = $(this).attr("id");
+									window.sessionStorage.setItem("feed", pos);
+								});
+							});
 				}
 
 	function errorCB(err) {
@@ -79,13 +86,7 @@ alert("second run");
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
     //$( "#indexpage").on('pageinit',function(event){
-	$('#indexpage').live('pageshow',function(event){
-		$("#category-list").trigger("create");
-		$("a").bind( "click", function(event, ui) {
-			pos = $(this).attr("id");
-			window.sessionStorage.setItem("feed", pos);
-		});
-    });
+
     </script>
         <div data-role="header" data-position="fixed"  data-theme="f" id="myHeader">
 		<a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a>
