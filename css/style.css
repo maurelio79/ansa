@@ -19,7 +19,7 @@ div#risultato span {font-size: 11px; font-style: italic;}
 .my-button-home { width: 30px; height: 30px; background-image: url("images/home.png"); background-size: 28px 28px; background-position: center center; }
 
 .my-button-preference { width: 30px; height: 30px; background-image: url("images/gear.png"); background-size: 28px 28px; background-position: center center; }
-/*
+
 #category-list {
     width: 95%;
     color: #666;
@@ -43,4 +43,4 @@ div#risultato span {font-size: 11px; font-style: italic;}
     	display: block;
 		text-decoration: none;
     }
-*/
+

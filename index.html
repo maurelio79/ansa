@@ -48,7 +48,7 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
-						$("#category-list").append(output).trigger( "enhance" );
+						$("#category-list").append(output);
 				}
 
 	function errorCB(err) {
@@ -95,7 +95,7 @@ alert("second run");
         <div  data-role="content" id="risultato" data-theme="f">
 
         <!-- The YQL statment will be assigned to src. -->
-		    <ul data-role="listview" id="category-list">
+		    <ul id="category-list">
 		    <!-- <li><a href="news.html" data-ajax="false" id="home">Top News</a></li>
 		    <li><a href="news.html" data-ajax="false" id="cronaca">Cronaca</a></li>
 		    <li><a href="news.html" data-ajax="false" id="economia">Economia</a></li>
