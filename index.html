@@ -80,7 +80,7 @@ alert("second run");
 <body>
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
-    $( "#indexpage").on('pageinit',function(event){
+    $( "#indexpage").on('pagecreate',function(event){
 				$("a").bind( "click", function(event, ui) {
 					pos = $(this).attr("id");
 					window.sessionStorage.setItem("feed", pos);
