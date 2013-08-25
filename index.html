@@ -13,9 +13,9 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
 
-	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
 	<script type="text/javascript" charset="utf-8">
-	document.addEventListener("deviceready", onDeviceReady, false);
+	//document.addEventListener("deviceready", onDeviceReady, false);
 
 	function populateDB(tx) {
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
@@ -39,14 +39,15 @@
 
 	function querySuccess(tx, results) {
 					var len = results.rows.length;
-					var window.output = '';
+					var output = '';
 		//		    console.log("DEMO table: " + len + " rows found.");
 					for (var i=0; i<len; i++){
 		//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
 						var categoria = results.rows.item(i).category;
 						var stato = results.rows.item(i).status;
 						var idClick = results.rows.item(i).idTag;
-						window.output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
+						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
+						$(output).appendTo("#category-list");
 					}
 
 				}
@@ -79,7 +80,6 @@ alert("second run");
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
     $( "#indexpage").on('pageinit',function(event){
-				$(output).appendTo("#category-list");
 				$("a").bind( "click", function(event, ui) {
 					pos = $(this).attr("id");
 					window.sessionStorage.setItem("feed", pos);
