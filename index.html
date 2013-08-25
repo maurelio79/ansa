@@ -8,14 +8,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     
-    <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
-    <link rel="stylesheet" href="css/ansa.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/jquery.mobile-1.3.2.min.js"></script>
-	<!-- <script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
+
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	<script type="text/javascript" charset="utf-8">
-	//document.addEventListener("deviceready", onDeviceReady, false);
+	document.addEventListener("deviceready", onDeviceReady, false);
 
 	function populateDB(tx) {
 		    tx.executeSql('DROP TABLE IF EXISTS PREFERNCE');
@@ -48,7 +44,7 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 					}
-						$(output).appendTo("#category-list");
+						$(output).appendTo("#category-list").trigger("create");
 				}
 
 	function errorCB(err) {
@@ -73,7 +69,11 @@ alert("second run");
 			}
 
 	</script>
-    
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
+    <link rel="stylesheet" href="css/ansa.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.mobile-1.3.2.min.js"></script>
     </head>  
 <body>
     <div data-role="page" data-theme="f" id="indexpage">
