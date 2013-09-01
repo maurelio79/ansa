@@ -13,7 +13,9 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
 
+
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
 	<script type="text/javascript" charset="utf-8">
 	document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -47,8 +49,10 @@
 						var stato = results.rows.item(i).status;
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
+
 						$(output).appendTo("#category-list");
 						$("#category-list").listview().listview("refresh");
+
 					}
 
 				}
@@ -80,7 +84,7 @@ alert("second run");
 <body>
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
-    $( "#indexpage").on('pageinit',function(event){
+    $( "#indexpage").on('pagecreate',function(event){
 				$("a").bind( "click", function(event, ui) {
 					pos = $(this).attr("id");
 					window.sessionStorage.setItem("feed", pos);
