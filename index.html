@@ -36,7 +36,7 @@
 
 
 	function queryDB(tx) {
-		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
+		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', querySuccess, errorCB);
 	}
 
 	function querySuccess(tx, results) {
@@ -50,7 +50,7 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 
-						$(output).appendTo("#category-list");
+						$("#category-list").append(output);
 						$("#category-list").listview().listview("refresh");
 
 					}
@@ -85,7 +85,7 @@ alert("second run");
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
     $( "#indexpage").on('pagecreate',function(event){
-				$("a").bind( "click", function(event, ui) {
+				$("a").on( "click", "a", function(event, ui) {
 					pos = $(this).attr("id");
 					window.sessionStorage.setItem("feed", pos);
 				});
