@@ -70,10 +70,10 @@
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 				var settings = window.localStorage.getItem("option");
 				if (settings == null){
-alert("first run");
+//alert("first run");
 					db.transaction(populateDB, errorCB, successCB);
 				} else {
-alert("second run");
+//alert("second run");
 					db.transaction(successCB, errorCB);					
 				}
 			}
