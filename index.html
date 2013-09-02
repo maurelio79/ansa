@@ -36,7 +36,7 @@
 
 
 	function queryDB(tx) {
-		tx.executeSql('SELECT category, status, idTag FROM PREFERENCE WHERE status="active"', querySuccess, errorCB);
+		tx.executeSql('SELECT * FROM PREFERENCE WHERE status="active"', [], querySuccess, errorCB);
 	}
 
 	function querySuccess(tx, results) {
