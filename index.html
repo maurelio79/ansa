@@ -85,17 +85,14 @@ alert("second run");
     <div data-role="page" data-theme="f" id="indexpage">
     <script>
     $( "#indexpage").on('pagecreate',function(event){
-				$("a").on( "click", "a", function(event, ui) {
+				$("#category-list").on( "click", "a", function(event, ui) {
 					pos = $(this).attr("id");
 					window.sessionStorage.setItem("feed", pos);
 				});
 			});
     </script>
         <div data-role="header" data-position="fixed"  data-theme="f" id="myHeader">
-		<!-- <a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a> -->
         <h1>Ansa Grabber</h1>
-		<!-- <a href="preferenze.html" class="my-button-preference"  data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-right" data-ajax="false"></a> -->
-
         </div>
         <!-- Div tag for stories results -->  
         <div  data-role="content" id="risultato" data-theme="f">
