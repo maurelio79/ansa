@@ -13,7 +13,78 @@
     <link rel="stylesheet" href="css/style.css" />
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script src="js/jquery.mobile-1.3.2.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
     
+	<script type="text/javascript" charset="utf-8">
+	document.addEventListener("deviceready", onDeviceReady, false);
+
+	function queryDB(tx) {
+		tx.executeSql('SELECT * FROM PREFERENCE WHERE checked="true"', [], querySuccessActive, errorCB);
+		tx.executeSql('SELECT * FROM PREFERENCE WHERE checked="false"', [], querySuccessInactive, errorCB);
+	}
+
+	function queryUpdateDB(tx) {
+		tx.executeSql('UPDATE PREFERENCE SET checked=' + checked + ' WHERE idTag=' + idClick , [], [], errorCB);
+		
+	}
+
+	function successUpdateCB() {
+		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+		db.transaction(queryUpdateDB, errorCB);
+	}
+
+
+
+
+	function querySuccessActive(tx, results) {
+					var len = results.rows.length;
+					var output = '';
+		//		    console.log("DEMO table: " + len + " rows found.");
+					for (var i=0; i<len; i++){
+		//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+						var categoria = results.rows.item(i).category;
+						var stato = results.rows.item(i).checked;
+						var idClick = results.rows.item(i).idTag;
+						output += "<input type='checkbox' checked='true' name='" + idClick + "' id='" + idClick + "'><label for='" + idClick + "'>" + categoria + "</label>";
+					}
+						$("#controlgroup-active").html(output);
+						$("#fieldcontain-active").trigger("create");
+				}
+
+	function querySuccessInactive(tx, results) {
+					var len = results.rows.length;
+					var output = '';
+		//		    console.log("DEMO table: " + len + " rows found.");
+					for (var i=0; i<len; i++){
+		//				alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+						var categoria = results.rows.item(i).category;
+						var stato = results.rows.item(i).checked;
+						var idClick = results.rows.item(i).idTag;
+						output += "<input type='checkbox' name='" + idClick + "' id='" + idClick + "'><label for='" + idClick + "'>" + categoria + "</label>";
+					}
+						$("#controlgroup-inactive").html(output);
+						$("#fieldcontain-inactive").trigger("create");
+				}
+
+	function errorCB(err) {
+		    alert("Error processing SQL: "+err.code);
+		}
+
+	function updateSuccess() {
+		    alert("ok");
+		}
+
+	function successCB() {
+		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+		db.transaction(queryDB, errorCB);
+	}
+
+	function onDeviceReady() {
+					var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+					db.transaction(successCB, errorCB);
+				}
+	</script>
+
     </head>  
 <body>
     <div data-role="page" data-theme="a" id="preferenze">
@@ -25,12 +96,32 @@
 			});
 		});      
 
-		$( "#preferenze").on('pageinit',function(event){
-			$("#home").attr('checked', true).checkboxradio("refresh");
+		//$( "#preferenze").on('pageinit',function(event){
+			//$("#home").attr('checked', true).checkboxradio("refresh");
 			//var status = $("#home").val();
 			//alert(status);
-		});      
-      
+		//});
+
+		$( "#preferenze").on('pageinit',function(event){
+			$("#button_category").bind("click", function(event){
+				$("#fieldcontain-active").trigger("refresh");
+				$("#fieldcontain-inactive").trigger("refresh");
+				$("input[type='checkbox']").each(function(i){
+					var $input = $(this);
+					var checked = $input.attr("checked") ? "true" : "false";
+					var idClick = $input.attr("name");
+
+					//tx.executeSql('UPDATE PREFERENCE SET checked=' + checked + ' WHERE idTag=' + idClick , [], [], errorCB);
+					var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+					db.transaction(onUpdateDB, errorCB);
+						function onUpdateDB(tx) {
+						var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
+						alert(idClick + " is " + checked);
+						//tx.executeSql('UPDATE PREFERENCE SET checked="' + checked + '" WHERE idTag="' + idClick + '" , [], updateSuccess, errorCB);
+						}
+				});
+			});
+		});
     </script>
         <div data-role="header" data-position="fixed"  data-theme="f">
 		<!-- <a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a> -->
@@ -49,30 +140,23 @@
 				</script>
 				<a href="index.html" id="button" data-theme="a" data-icon="check" data-ajax="false" data-role="button"  class="ui-btn-active">Salva</a>
 			</div>
-			<div data-role="fieldcontain">
-				<fieldset data-role="controlgroup" id="controlgroup-active">
+
+			<div data-role="fieldcontain" id="fieldcontain">
+				<fieldset data-role="controlgroup" id="fieldcontain-active">
 					<legend>Categorie attive:</legend>
-					<input type="checkbox" name="home" id="home" />
-					<label for="home">Top News</label>
-					<input type="checkbox" name="home" id="cronaca" />
-					<label for="cronaca">Cronaca</label>
-					<input type="checkbox" name="scienza" id="scienza" />
-					<label for="scienza">Scienza</label>
-					<input type="checkbox" name="tech" id="tech" />
-					<label for="tech">Tecnologia</label>
-					<input type="checkbox" name="mondo" id="mondo" />
-					<label for="mondo">Mondo</label>
+					<span id="controlgroup-active">
+
+					</span>
 				</fieldset>
-				<fieldset data-role="controlgroup" id="controlgroup-inactive">
+			</div>
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup" id="fieldcontain-inactive">
 					<legend>Categorie inattive:</legend>
-					<input type="checkbox" name="home" id="economia" />
-					<label for="economia">Economia</label>
-					<input type="checkbox" name="politica" id="politica" />
-					<label for="politica">Politica</label>
-					<input type="checkbox" name="cinema" id="cinema" />
-					<label for="cinema">Cinema</label>
+					<span id = "controlgroup-inactive">
+
+					</span>
 				</fieldset>
-				<a href="index.html" id="button_category" data-theme="f" data-icon="check" data-ajax="false" data-role="button" class="ui-btn-active">Salva</a>
+				<a href="" id="button_category" data-theme="f" data-icon="check" data-ajax="false" data-role="button" class="ui-btn-active">Salva</a>
 			</div>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
