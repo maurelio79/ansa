@@ -50,7 +50,7 @@
 						var idClick = results.rows.item(i).idTag;
 						output += "<li><a href='news.html' data-ajax='false' id=" + idClick + ">" + categoria + "</a></li>";
 
-						$("#category-list").append(output);
+						$("#category-list").html(output);
 						$("#category-list").listview().listview("refresh");
 
 					}
