@@ -104,8 +104,7 @@
 
 		$( "#preferenze").on('pageinit',function(event){
 			$("#button_category").bind("click", function(event){
-				$("#fieldcontain-active").trigger("refresh");
-				$("#fieldcontain-inactive").trigger("refresh");
+				$("input[type='checkbox']").checkboxradio('refresh');
 				$("input[type='checkbox']").each(function(i){
 					var $input = $(this);
 					var checked = $input.attr("checked") ? "true" : "false";
