@@ -18,11 +18,13 @@
 	<script type="text/javascript" charset="utf-8">
 	document.addEventListener("deviceready", onDeviceReady, false);
 
+	//#3-Execute query select for active and inactive category
 	function queryDB(tx) {
 		tx.executeSql('SELECT * FROM PREFERENCE WHERE checked="true"', [], querySuccessActive, errorCB);
 		tx.executeSql('SELECT * FROM PREFERENCE WHERE checked="false"', [], querySuccessInactive, errorCB);
 	}
 
+	//Execute query to update active and inactive category
 	function queryUpdateDB(tx) {
 		tx.executeSql('UPDATE PREFERENCE SET checked=' + checked + ' WHERE idTag=' + idClick , [], [], errorCB);
 		
@@ -35,7 +37,7 @@
 
 
 
-
+	//#4-Output the result from query #3
 	function querySuccessActive(tx, results) {
 					var len = results.rows.length;
 					var output = '';
@@ -51,6 +53,7 @@
 						$("#fieldcontain-active").trigger("create");
 				}
 
+	//#5-Output the result from query #3
 	function querySuccessInactive(tx, results) {
 					var len = results.rows.length;
 					var output = '';
@@ -71,14 +74,16 @@
 		}
 
 	function updateSuccess() {
-		    alert("ok");
+			alert("Modifiche avvenute correttamente.");
 		}
 
+	//#2-If query #1 ok start others query
 	function successCB() {
 		var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 		db.transaction(queryDB, errorCB);
 	}
 
+	//#1-Start db transaction
 	function onDeviceReady() {
 					var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 					db.transaction(successCB, errorCB);
@@ -104,26 +109,24 @@
 
 		$( "#preferenze").on('pageinit',function(event){
 			$("#button_category").bind("click", function(event){
-				$("input[type='checkbox']").checkboxradio('refresh');
 				$("input[type='checkbox']").each(function(i){
 					var $input = $(this);
-					var checked = $input.attr("checked") ? "true" : "false";
+					var checked = $($input).is(":checked");
 					var idClick = $input.attr("name");
 
-					//tx.executeSql('UPDATE PREFERENCE SET checked=' + checked + ' WHERE idTag=' + idClick , [], [], errorCB);
 					var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 					db.transaction(onUpdateDB, errorCB);
 						function onUpdateDB(tx) {
 						var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
-						alert(idClick + " is " + checked);
-						//tx.executeSql('UPDATE PREFERENCE SET checked="' + checked + '" WHERE idTag="' + idClick + '" , [], updateSuccess, errorCB);
+						//alert(idClick + " is " + checked);
+						tx.executeSql("UPDATE PREFERENCE SET checked='" + checked + "' WHERE idTag='" + idClick + "'" , [], [], errorCB);
 						}
 				});
+				updateSuccess();
 			});
 		});
     </script>
         <div data-role="header" data-position="fixed"  data-theme="f">
-		<!-- <a href="index.html"  class="my-button-home" data-inline="true" data-iconpos="notext" data-theme="a"  data-corners="false" class="ui-btn-left" data-ajax="false"></a> -->
         <h1>Preferenze</h1>
         </div>
         <!-- Div tag for stories results -->  
