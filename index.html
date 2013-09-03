@@ -67,14 +67,11 @@
 	}
 
 	function onDeviceReady() {
-alert("run");
 				var db = window.openDatabase("Ansa", "1.0", "Ansa Grabber", 200000);
 				var settings = window.localStorage.getItem("option");
 				if (settings == null){
-alert("first run");
 					db.transaction(populateDB, errorCB, successCB);
 				} else {
-alert("second run");
 					db.transaction(successCB, errorCB);				
 				}
 			}
@@ -100,14 +97,7 @@ alert("second run");
 
         <!-- The YQL statment will be assigned to src. -->
 		    <ul data-role="listview" id="category-list">
-		    <!--<li><a href="news.html" data-ajax="false" id="home">Top News</a></li>
-		    <li><a href="news.html" data-ajax="false" id="cronaca">Cronaca</a></li>
-		    <li><a href="news.html" data-ajax="false" id="economia">Economia</a></li>
-		    <li><a href="news.html" data-ajax="false" id="politica">Politica</a></li>
-			<li><a href="news.html" data-ajax="false" id="scienza">Scienza</a></li>
-		    <li><a href="news.html" data-ajax="false" id="tech">Tecnologia</a></li>
-		    <li><a href="news.html" data-ajax="false" id="cinema">Cinema</a></li>
-		    <li><a href="news.html" data-ajax="false" id="mondo">Mondo</a></li>-->
+
 		    </ul>
         </div>
         <div data-role="footer" data-position="fixed"  data-theme="f">
